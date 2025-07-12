@@ -229,7 +229,11 @@ class LigaRecordApp:
             "5-3-2": {'Goleiro':1, 'Defesa':5, 'Médio':3, 'Avançado':2}
         }
         
-        disponiveis = self.df[(self.df['Titular'] | self.df['Suplente'] | self.df['Reserva']) & ~self.df['Lesionado']]
+        disponiveis = self.df[
+            (self.df['Titular'] | self.df['Suplente'] | self.df['Reserva'])
+            & ~self.df['Lesionado']
+            & ~self.df['Expulso']
+        ]
         equipe = pd.DataFrame()
         
         for pos, qtd in mapeamento[formacao].items():
